@@ -1,8 +1,0 @@
-<style>
-
-@keyframes Rotacao3d {
-	from {transform: rotateX(180deg);}
-	to {transform: rotateX(0deg);}
-}
-
-</style>

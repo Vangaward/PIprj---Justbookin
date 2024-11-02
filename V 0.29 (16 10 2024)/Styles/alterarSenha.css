@@ -1,0 +1,145 @@
+  <style>
+        @keyframes Rotacao3d {
+            from { transform: rotateX(180deg); }
+            to { transform: rotateX(0deg); }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .btnAlterarPopUp {
+            background-color: white;
+            border: 2px solid #ccc;
+            border-radius: 15px;
+            padding: 40px; /* Aumentei o padding */
+            width: 100%;
+            max-width: 800px; /* Aumentei o tamanho máximo da largura */
+            min-width: 500px; /* Aumentei o tamanho mínimo da largura */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: Rotacao3d 0.6s ease-out;
+        }
+
+        .btnAlterarPopUp h1 {
+            font-size: 32px; /* Aumentei o tamanho da fonte */
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+
+        .btnAlterarPopUp label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 20px; /* Aumentei o tamanho da fonte */
+            color: #555;
+        }
+
+        .btnAlterarPopUp input[type="password"] {
+            width: 100%;
+            padding: 15px; /* Aumentei o padding */
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 18px; /* Aumentei o tamanho da fonte */
+        }
+
+        .btnAlterarPopUp button[type="submit"] {
+            width: 100%;
+            padding: 15px; /* Aumentei o padding */
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px; /* Aumentei o tamanho da fonte */
+            margin-top: 20px;
+        }
+
+        .btnAlterarPopUp button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .lblErro {
+            color: red;
+            font-size: 16px; /* Aumentei o tamanho da fonte */
+            display: block;
+            margin-top: 15px;
+        }
+
+        /* Ajustes para telas menores */
+        @media (max-width: 600px) {
+            .btnAlterarPopUp {
+                padding: 30px;
+                max-width: 100%; /* Aumentei a largura em relação ao viewport */
+                min-width: 90%; /* Garante que a div ocupe quase toda a tela */
+            }
+
+            .btnAlterarPopUp h1 {
+                font-size: 28px; /* Ajustei o tamanho da fonte */
+            }
+
+            .btnAlterarPopUp label {
+                font-size: 18px;
+            }
+
+            .btnAlterarPopUp input[type="password"] {
+                padding: 12px;
+                font-size: 16px;
+            }
+
+            .btnAlterarPopUp button[type="submit"] {
+                padding: 12px;
+                font-size: 18px;
+            }
+
+            .lblErro {
+                font-size: 14px;
+            }
+        }
+
+        /* Ajuste fino para telas muito pequenas, como smartphones menores */
+        @media (max-width: 400px) {
+            .btnAlterarPopUp {
+                padding: 25px;
+                min-width: 95%; /* Garante que preencha praticamente toda a tela */
+            }
+
+            .btnAlterarPopUp h1 {
+                font-size: 24px;
+            }
+
+            .btnAlterarPopUp input[type="password"] {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .btnAlterarPopUp button[type="submit"] {
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .lblErro {
+                font-size: 12px;
+            }
+        }
+    </style>

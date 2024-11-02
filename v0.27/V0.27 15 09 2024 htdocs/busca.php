@@ -192,7 +192,7 @@ if ($stmt) {
 <?php if ($haSearch || $haCatsFiltro){
 	foreach ($allResults as $dadosLit) {
 			if ($dadosLit['urlCapa'] == "")
-			{$img = "imagens/batata.png";}else{$img = "imagensCapa/" . $dadosLit['urlCapa'];}
+			{$img = "imagens/batata.png";}else{$img = $dirCapa . $dadosLit['urlCapa'];}
 				?>
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 				<?php

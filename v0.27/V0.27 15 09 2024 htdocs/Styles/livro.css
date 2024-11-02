@@ -734,18 +734,22 @@ cursor: pointer;
 }
 
 .btnEnviar {
+	background-image: var(--corGradiente);
+	background-size: 200% 100%;
+	border: none;
 	display: flex;
-	width: 2.5rem;
-	height: 2.5rem;
 	justify-content: center;
 	align-items: center;
+	width: 2.5rem;
+	height: 2.5rem;
 	border-radius: 0.625rem;
-	background: var(--azulGradiente);
-	border: none;
+	transition: all 200ms ease-out;
 }
 
 .btnEnviar:hover {
-	background: var(--azulEscuroGradiente);
+	cursor: pointer;
+	transform: scale(1.05);
+	background-position-x: 100%;
 }
 
 .comentario {

@@ -98,7 +98,7 @@ else
 			<form class="comentar" name="enviaComent" action="BDcomentarioLit.php?i=<?php echo $idLitSha1; ?>" method="post">
 				<input type="hidden" name="tokenFrmNoCo" value="<?php echo $_SESSION['TSFNovoComent'] ?>">
 				<input type="text" class="form-control txtComentario" name="nameTxtComent" id="inptComentId" maxlength="100" oninput="digitaComent();" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" required>
-				<button class="btnEnviar" name="submEnviaComent" type="submit"><?php include_once('icones/aviaoPapel.svg');?></button>
+				<button class="btnEnviar azul" name="submEnviaComent" type="submit"><?php include_once('icones/aviaoPapel.svg');?></button>
 				<label id="lblQtdCaracteresId"></label>
 			</form>
 		<?php } else {?> <label>(<a href="login">Faça login</a> para fazer um comentário)</label> <?php } ?>

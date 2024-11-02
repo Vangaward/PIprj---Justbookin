@@ -1,5 +1,5 @@
 <?php
-die("<h1>Estamos em reformas, pedimos desculpas pelo CONVENIENTE, voltaremos assim que impossível.</h1>");
+//die("<h1>Estamos em reformas, pedimos desculpas pelo CONVENIENTE, voltaremos assim que impossível.</h1>");
 	$host = "sql306.infinityfree.com"; 			
 	$user = "if0_34867037"; 
 	$pass = "7Pa9bwHEBCuD"; 

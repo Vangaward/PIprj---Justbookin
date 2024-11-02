@@ -7,11 +7,23 @@ include_once('Vlogin.php');
 
 $idUsuario = $dadosLogin['idUsuario'];
 
-if (isset($_POST['excluFoto']))
+	if ($_POST['tokenFrmAltBanner'] != $_SESSION['TSFAltBanner'])
+	{
+		$_SESSION['perfilMsg'] = 4;
+		header('Location: perfil.php');
+		die();
+	}
+	else
+	{
+		unset($_SESSION['TSFAltBanner']);
+	}
+
+if (isset($_POST['excluBanner']))
 {
-	if (unlink($dirFotoPerfil . $dadosLogin['urlFotoPerfil']))
+	
+	if (unlink($dirBanner . $dadosLogin['urlBanner']))
 		{
-			$sqlupdate =  "update usuario set urlFotoPerfil='' where idUsuario = '$idUsuario'";
+			$sqlupdate =  "update usuario set urlBanner='' where idUsuario = '$idUsuario'";
 			$resultado = @mysqli_query($conexao, $sqlupdate);
 			if (!$resultado) {
 				echo '<input type="button" onclick="window.location='."'index.php'".';" value="Voltar"><br><br>';
@@ -27,16 +39,15 @@ if (isset($_POST['excluFoto']))
 		}
 	die();
 }
-
-if (isset($_FILES['arquivoFotoPerfil'])) //Alterar foto enviado
+else if (isset($_FILES['arquivoBanner'])) //Alterar banner enviado
 {
-	$erroArquivo = $_FILES['arquivoFotoPerfil']['error'];
+	$erroArquivo = $_FILES['arquivoBanner']['error'];
 	$erroExclImg;
 	if ($erroArquivo === UPLOAD_ERR_OK)
 	{
-		if (!empty($dadosLogin['urlFotoPerfil']))
+		if (!empty($dadosLogin['urlBanner']))
 		{
-			if (unlink($dirFotoPerfil . $dadosLogin['urlFotoPerfil']))
+			if (unlink($dirBanner . $dadosLogin['urlBanner']))
 			{
 				$erroExclImg = false;
 			}
@@ -51,10 +62,10 @@ if (isset($_FILES['arquivoFotoPerfil'])) //Alterar foto enviado
 		}
 		if ($erroExclImg == false)
 		{
-			$nomeArquivo = $_FILES['arquivoFotoPerfil']['name'];
-			$caminhoTemporario = $_FILES['arquivoFotoPerfil']['tmp_name'];
+			$nomeArquivo = $_FILES['arquivoBanner']['name'];
+			$caminhoTemporario = $_FILES['arquivoBanner']['tmp_name'];
 			$nomeArquivoUnico = sha1(time()) . '_' . $nomeArquivo;
-			$destinoFotoPerfil = $dirFotoPerfil . $nomeArquivoUnico;
+			$destinoBanner = $dirBanner . $nomeArquivoUnico;
 			
 			/*Tratar extensão*/
 			$extensao = strtolower(pathinfo($nomeArquivo, PATHINFO_EXTENSION));
@@ -74,7 +85,7 @@ if (isset($_FILES['arquivoFotoPerfil'])) //Alterar foto enviado
 				header('Location: perfil.php');
                 exit();
 			}
-			if (file_exists($destinoFotoPerfil))
+			if (file_exists($destinoBanner))
 			{
 				$_SESSION['perfilMsg'] = 3;
 				header('Location: perfil.php');
@@ -82,9 +93,9 @@ if (isset($_FILES['arquivoFotoPerfil'])) //Alterar foto enviado
 			}
 			else
 			{
-				if(move_uploaded_file($caminhoTemporario, $destinoFotoPerfil))
+				if(move_uploaded_file($caminhoTemporario, $destinoBanner))
 				{
-					echo 'sucesso ao mover';
+					//echo 'sucesso ao mover';
 				}
 				else
 				{
@@ -94,7 +105,7 @@ if (isset($_FILES['arquivoFotoPerfil'])) //Alterar foto enviado
 				}
 			}
 			
-			$sqlupdate =  "update usuario set urlFotoPerfil='$nomeArquivoUnico' where idUsuario = '$idUsuario'";
+			$sqlupdate =  "update usuario set urlBanner='$nomeArquivoUnico' where idUsuario = '$idUsuario'";
 			$resultado = @mysqli_query($conexao, $sqlupdate);
 			if (!$resultado) {
 				echo '<input type="button" onclick="window.location='."'index.php'".';" value="Voltar"><br><br>';
@@ -104,7 +115,7 @@ if (isset($_FILES['arquivoFotoPerfil'])) //Alterar foto enviado
 		}
 		else
 		{
-			$sqlupdate =  "update usuario set urlFotoPerfil='' where idUsuario = '$idUsuario'";
+			$sqlupdate =  "update usuario set urlBanner='' where idUsuario = '$idUsuario'";
 			$resultado = @mysqli_query($conexao, $sqlupdate);
 			if (!$resultado) {
 				echo '<input type="button" onclick="window.location='."'index.php'".';" value="Voltar"><br><br>';
@@ -123,7 +134,7 @@ if (isset($_FILES['arquivoFotoPerfil'])) //Alterar foto enviado
 		}
 }//Alterar foto enviado
 
-	if (!isset($_POST['excluFoto']) && !isset($_FILES['arquivoFotoPerfil']))
+	if (!isset($_POST['excluBanner']) && !isset($_FILES['arquivoBanner']))
 	{
 		header('Location: index.php');
 	}

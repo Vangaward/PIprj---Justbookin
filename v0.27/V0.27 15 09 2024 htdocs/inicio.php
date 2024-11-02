@@ -116,7 +116,7 @@ if (!$queryLitTop || !$queryLitTodas) {
             <label class="tituloPagina">Top 10 com mais curtidas:</label>
             <div id="idTopLits" class="litsHoriz">
                 <?php while ($dadosLitTop = mysqli_fetch_array($queryLitTop)) { 
-                    $img = $dadosLitTop['urlCapa'] ? "imagensCapa/" . $dadosLitTop['urlCapa'] : "imagens/batata.png";
+                    $img = $dadosLitTop['urlCapa'] ? $dirCapa . $dadosLitTop['urlCapa'] : "imagens/batata.png";
                     $idLitCard = sha1($dadosLitTop['idLit']);
                     $titulo = $dadosLitTop['titulo'];
                     $nomeUser = $dadosLitTop['nomeUsuario'];
@@ -127,7 +127,7 @@ if (!$queryLitTop || !$queryLitTodas) {
             <label class="tituloPagina">Top 10 mais visualizadas:</label>
             <div id="idMaisViewsLits" class="litsHoriz">
                 <?php while ($dadosLitMaisViews = mysqli_fetch_array($queryLitMaisViews)) { 
-                    $img = $dadosLitMaisViews['urlCapa'] ? "imagensCapa/" . $dadosLitMaisViews['urlCapa'] : "imagens/batata.png";
+                    $img = $dadosLitMaisViews['urlCapa'] ? $dirCapa . $dadosLitMaisViews['urlCapa'] : "imagens/batata.png";
                     $idLitCard = sha1($dadosLitMaisViews['idLit']);
                     $titulo = $dadosLitMaisViews['titulo'];
                     $nomeUser = $dadosLitMaisViews['nomeUsuario'];
@@ -138,7 +138,7 @@ if (!$queryLitTop || !$queryLitTodas) {
 			<label class="tituloPagina">Top 10 mais favoritadas:</label>
             <div id="idMaisViewsLits" class="litsHoriz">
                 <?php while ($dadosLitMaisFavs = mysqli_fetch_array($queryLitMaisFavs)) { 
-                    $img = $dadosLitMaisFavs['urlCapa'] ? "imagensCapa/" . $dadosLitMaisFavs['urlCapa'] : "imagens/batata.png";
+                    $img = $dadosLitMaisFavs['urlCapa'] ? $dirCapa . $dadosLitMaisFavs['urlCapa'] : "imagens/batata.png";
                     $idLitCard = sha1($dadosLitMaisFavs['idLit']);
                     $titulo = $dadosLitMaisFavs['titulo'];
                     $nomeUser = $dadosLitMaisFavs['nomeUsuario'];
@@ -149,7 +149,7 @@ if (!$queryLitTop || !$queryLitTodas) {
 			<label class="tituloPagina">Acabaram de sair do forno:</label>
             <div id="idMaisViewsLits" class="litsHoriz">
                 <?php while ($dadosLitMaisRecentes = mysqli_fetch_array($queryLitMaisRecentes)) { 
-                    $img = $dadosLitMaisRecentes['urlCapa'] ? "imagensCapa/" . $dadosLitMaisRecentes['urlCapa'] : "imagens/batata.png";
+                    $img = $dadosLitMaisRecentes['urlCapa'] ? $dirCapa . $dadosLitMaisRecentes['urlCapa'] : "imagens/batata.png";
                     $idLitCard = sha1($dadosLitMaisRecentes['idLit']);
                     $titulo = $dadosLitMaisRecentes['titulo'];
                     $nomeUser = $dadosLitMaisRecentes['nomeUsuario'];
@@ -160,7 +160,7 @@ if (!$queryLitTop || !$queryLitTodas) {
 			<label class="tituloPagina">Todas as literaturas:</label>
             <div id="idTodasLits" class="litsHoriz">
                 <?php while ($dadosLitTodas = mysqli_fetch_array($queryLitTodas)) { 
-                    $img = $dadosLitTodas['urlCapa'] ? "imagensCapa/" . $dadosLitTodas['urlCapa'] : "imagens/batata.png";
+                    $img = $dadosLitTodas['urlCapa'] ? $dirCapa . $dadosLitTodas['urlCapa'] : "imagens/batata.png";
                     $idLitCard = sha1($dadosLitTodas['idLit']);
                     $titulo = $dadosLitTodas['titulo'];
                     $nomeUser = $dadosLitTodas['nomeUsuario'];

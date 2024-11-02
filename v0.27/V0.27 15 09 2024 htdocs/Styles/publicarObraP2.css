@@ -156,13 +156,13 @@
 	align-items: center;
 	gap: 10px;
 	align-self: stretch;
-	background: var(--cor4Escuro);
-	border-radius: 50px 50px 0px 0px;
+	background: var(--cor4);
+	border-radius: 20px 20px 0px 0px;
 }
 
 .hEditCap label {
 	overflow: hidden;
-	color: var(--branco);
+	color: var(--cor4Escuro);
 	text-overflow: ellipsis;
 	font-family: Arimo;
 	font-size: 20px;
@@ -172,7 +172,7 @@
 }
 
 .hEditCap input {
-	color: var(--branco);
+	color: var(--cor4Escuro);
 	font-family: Arimo;
 	font-size: 20px;
 	font-style: normal;
@@ -209,7 +209,7 @@
 	justify-content: center;
 	align-items: center;
 	align-self: stretch;
-	border-radius: 0px 0px 50px 50px;
+	border-radius: 0px 0px 20px 20px;
 	background: var(--cor4Escuro);
 	overflow-y: scroll;
 }
@@ -251,20 +251,14 @@
 {
 	color: var(--branco);
 }
-.txtNomeCapitulo {
+.txtCapitulo {
 	color: var(--branco);
 	border-radius: 4px;
     background-color: transparent;
-	border: 1px solid var(--cinza);
+	border: 1px solid var(--cor4Claro);
 	margin-left: 10px;
 }
-.txtPaginaCapitulo {
-	color: var(--branco);
-	border-radius: 4px;
-    background-color: transparent;
-	border: 1px solid var(--cinza);
-	margin-left: 35px;
-}
+
 .linhaCap
 {
 	height: 3px; 

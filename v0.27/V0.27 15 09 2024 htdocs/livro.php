@@ -184,7 +184,7 @@ function atualizarDadosAjax() {
 				}
 				else
 				{
-					$img = "imagensCapa/" . $dadosLit['urlCapa'];
+					$img = $dirCapa . $dadosLit['urlCapa'];
 					$haCapa = true;
 				}
 

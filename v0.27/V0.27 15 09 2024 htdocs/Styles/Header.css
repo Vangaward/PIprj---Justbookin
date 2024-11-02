@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    /*opacity: 0.2; *//* temporário */
+    opacity: 0.2; /* temporário */
     background: var(--cor1Escuro);
     padding: 10px 20px;
     position: fixed;

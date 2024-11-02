@@ -7,6 +7,7 @@
 $dirPdf = "literaturasPDFS/";
 $dirCapa = "imagensCapa/";
 $dirFotoPerfil = "fotosPerfil/";
+$dirBanner = "imagensBanner/";
 $litSemImg = "";//Literalmente nada
 
 ?>

@@ -26,6 +26,9 @@ TSFDeletarLit = Token usado para deletar literaturas | name do hidden = tokenFrm
 
 TSFAltSenha = Token usado para alterar senhas | name do hidden = tokenFrmAltSenha
 
+TSFAltBanner = Token usado para alterar o banner de perfil | name do hidden = tokenFrmAltBanner
+TSFAltFotoPerfil = Token usado para alterar a foto de perfil | name do hidden = tokenFrmAltFotoPerfil
+
 //Fim de variáveis de sessão\\
 
 */

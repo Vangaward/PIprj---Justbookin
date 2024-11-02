@@ -206,7 +206,7 @@ function adicionarCapitulo() {
   var inputField = document.createElement('input');
   inputField.setAttribute('type', 'text');
   inputField.setAttribute('name', 'capitulo[]');
-  inputField.classList.add('txtNomeCapitulo');
+  inputField.classList.add('txtCapitulo');
   inputField.setAttribute('value', 'Capítulo ' + quantidade);
   inputField.setAttribute('required', 'required');
   inputField.setAttribute('maxlength', '100');
@@ -222,7 +222,7 @@ function adicionarCapitulo() {
   paginaField.setAttribute('name', 'pagina[]');
   paginaField.setAttribute('min', '1');
   paginaField.setAttribute('max', quantidadePaginas);
-  paginaField.classList.add('txtPaginaCapitulo');
+  paginaField.classList.add('txtCapitulo');
   paginaField.setAttribute('required', 'required');
 
   var novoItem = document.createElement('hr');

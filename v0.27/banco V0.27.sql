@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: sql306.infinityfree.com
--- Tempo de geração: 05/09/2024 às 23:56
+-- Tempo de geração: 16/09/2024 às 00:05
 -- Versão do servidor: 10.6.19-MariaDB
 -- Versão do PHP: 7.2.22
 
@@ -151,7 +151,6 @@ INSERT INTO `comentarios` (`idComentario`, `idLit`, `idUsuario`, `txtComentario`
 (5, 35, 1, 'Teste 2', '2024-04-10 16:08:44'),
 (20, 38, 1, 'testeComent ₢', '2024-08-27 08:37:52'),
 (12, 28, 1, 'Este é um comentário', '2024-04-23 22:37:25'),
-(19, 49, 7, 'misericórdia', '2024-08-23 13:09:10'),
 (28, 52, 1, 'Emocionante e ao mesmo tempo muito assustador!', '2024-09-03 08:06:10');
 
 -- --------------------------------------------------------
@@ -414,22 +413,23 @@ CREATE TABLE `usuario` (
   `dataNascimento` date NOT NULL,
   `statusConta` int(11) NOT NULL,
   `tipoConta` int(11) NOT NULL,
-  `urlFotoPerfil` varchar(82) DEFAULT NULL
+  `urlFotoPerfil` varchar(82) DEFAULT NULL,
+  `urlBanner` varchar(82) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Despejando dados para a tabela `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `nome`, `sobrenome`, `nomeUsuario`, `email`, `senha`, `dataNascimento`, `statusConta`, `tipoConta`, `urlFotoPerfil`) VALUES
-(1, 'Juan', 'Cardoso', 'Juan2019', 'juan.cardosograv@gmail.com', '8c93ce1d07259934298ea47da504510529a423a4', '2004-11-30', 1, 3, '511a835b96bd7929412dab5b27aa181f8e3736cb_376471267107cc5167850ae03a1611b0.png'),
-(3, 'Juan2', 'O segundo', 'user3', 'juan2', '8c93ce1d07259934298ea47da504510529a423a4', '2023-09-05', 1, 3, ''),
-(5, 'jooj', 'gaag', 'user4', 'joaogabrielarruda55@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2005-04-05', 1, 3, '4564b3eac2cbb88256f7dc9c173f14db7057f908_Persona_5.png'),
-(7, 'cruzera', 'cruzera', 'cruzerblade', 'cruzera', '526ccf56098442c46fa589058039a2b451ef02d2', '0909-09-09', 1, 3, 'd3ffd64f63bca60cdaa35aea5ae05173c887b414_imagem_2024-06-19_001038935.png'),
-(9, 'Felipe', 'Chellton', 'user6', 'felipe@gmail.com', '4eadf75bea39642323e6f8d67b1137fc1653c1b7', '2023-11-23', 1, 3, ''),
-(42, 'adm', 'adm', 'adm', 'adm', 'e5e0b68adfacb66979505bedf6d424070c536eb6', '2024-08-20', 1, 1, NULL),
-(41, 'Teste', 'TEsteSobre', 'umTeste', 'tbalacobacos@gmail.com', '53dbfcef3798ca9f6e26960f84f1bac85f2b1cce', '2004-11-30', 1, 3, ''),
-(44, 'simpson', 'gamer', 'esecanalehbomdms', 'vicrulei@gmail.com', '92a47a0308243f87a042ea831f59761e8af953dd', '0666-09-06', 1, 3, '');
+INSERT INTO `usuario` (`idUsuario`, `nome`, `sobrenome`, `nomeUsuario`, `email`, `senha`, `dataNascimento`, `statusConta`, `tipoConta`, `urlFotoPerfil`, `urlBanner`) VALUES
+(1, 'Juan', 'Cardoso', 'Juan2019', 'juan.cardosograv@gmail.com', '8c93ce1d07259934298ea47da504510529a423a4', '2004-11-30', 1, 3, '1a3030071905032f9c10d830124f33252cb2a64b_kl_.jpg', 'bb90dd38443ab50865df3fcd71a073b979467534_download.jpg'),
+(3, 'Juan2', 'O segundo', 'user3', 'juan2', '8c93ce1d07259934298ea47da504510529a423a4', '2023-09-05', 1, 3, '', ''),
+(5, 'jooj', 'gaag', 'user4', 'joaogabrielarruda55@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2005-04-05', 1, 3, '4564b3eac2cbb88256f7dc9c173f14db7057f908_Persona_5.png', ''),
+(7, 'cruzera', 'cruzera', 'cruzerblade', 'cruzera', '526ccf56098442c46fa589058039a2b451ef02d2', '0909-09-09', 1, 3, 'd3ffd64f63bca60cdaa35aea5ae05173c887b414_imagem_2024-06-19_001038935.png', ''),
+(9, 'Felipe', 'Chellton', 'user6', 'felipe@gmail.com', '4eadf75bea39642323e6f8d67b1137fc1653c1b7', '2023-11-23', 1, 3, '', ''),
+(42, 'adm', 'adm', 'adm', 'adm', 'e5e0b68adfacb66979505bedf6d424070c536eb6', '2024-08-20', 1, 1, NULL, ''),
+(41, 'Teste', 'TEsteSobre', 'umTeste', 'tbalacobacos@gmail.com', '53dbfcef3798ca9f6e26960f84f1bac85f2b1cce', '2004-11-30', 1, 3, '', ''),
+(44, 'simpson', 'gamer', 'esecanalehbomdms', 'vicrulei@gmail.com', '92a47a0308243f87a042ea831f59761e8af953dd', '0666-09-06', 1, 3, '', '');
 
 -- --------------------------------------------------------
 
@@ -549,7 +549,7 @@ ALTER TABLE `histLogin`
 -- AUTO_INCREMENT de tabela `Literatura`
 --
 ALTER TABLE `Literatura`
-  MODIFY `idLit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `idLit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de tabela `notificacoes`

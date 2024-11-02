@@ -1,4 +1,7 @@
 <?php
+
+include_once('configs.php');
+
 if (!isset($logado)) {
     header('Location: index.php');
     exit;
@@ -10,7 +13,7 @@ if (!isset($logado)) {
 			//Imagem de perfil
 			$urlFotoPerfil;
 			if ($dadosLogin['urlFotoPerfil'] == "")
-			{ $urlFotoPerfil = "imagens/userPerfil.svg";}else{$urlFotoPerfil = 'fotosPerfil/' . $dadosLogin['urlFotoPerfil'];}
+			{ $urlFotoPerfil = "imagens/userPerfil.svg";}else{$urlFotoPerfil = $dirFotoPerfil . $dadosLogin['urlFotoPerfil'];}
 			
 			//Inscrições
 			$idUsuariosessao = $dadosLogin['idUsuario'];

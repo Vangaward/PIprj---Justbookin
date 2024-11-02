@@ -1,7 +1,10 @@
 <?php
 include_once ('Vlogin.php');
-
 include_once("conexao.php");
+include_once("configs.php");
+
+$_SESSION['TSFAltFotoPerfil'] = bin2hex(random_bytes(32));
+$_SESSION['TSFAltBanner'] = bin2hex(random_bytes(32));
 
 $lad = "asc"; //Filtros
 $meuUsuario;
@@ -150,15 +153,23 @@ if ($numRowsqueryUsuario < 1)
 }
 ?>
 
+<?php
+
+$urlimgBanner;
+if ($dadosLitPerfil['urlBanner'] == "")
+{ $urlimgBanner = "imagens/Banner.svg";}else{$urlimgBanner = $dirBanner . $dadosLitPerfil['urlBanner'];}
+
+?>
+
 <div class="image-container">
-<img class="Banner" src="imagens/Banner.svg">
+<img class="Banner" src="<?php echo $urlimgBanner; ?>"> <!--Banner.svg-->
 </div>
 
 <?php
 
 $urlFotoPerfil;
 if ($dadosLitPerfil['urlFotoPerfil'] == "")
-{ $urlFotoPerfil = "imagens/userPerfil.svg";}else{$urlFotoPerfil = 'fotosPerfil/' . $dadosLitPerfil['urlFotoPerfil'];}
+{ $urlFotoPerfil = "imagens/userPerfil.svg";}else{$urlFotoPerfil = $dirFotoPerfil . $dadosLitPerfil['urlFotoPerfil'];}
 
 ?>
 
@@ -173,6 +184,7 @@ if ($dadosLitPerfil['urlFotoPerfil'] == "")
 
 <?php if ($meuUsuario){ ?>
 <button onclick="location.href='alterarSenha.php'">Alterar Senha</button>
+<button onclick="openPopupBannerEdit()">Alterar Banner</button>
 <?php } ?>
 
 <?php include_once('header.php');?>
@@ -192,8 +204,12 @@ if (isset($_SESSION['perfilMsg']))
         {
             $msgErro = "Pedimos desculpas, houve um erro da nossa parte, por favor, teve novamente!";
         }
+		if ($_SESSION['perfilMsg'] == 4)
+        {
+            $msgErro = "Houve um problema com o token.";
+        }
 
-        echo "<div style='animation-name: Rotacao3d; animation-duration: 1s; ' class='alert alert-danger' role='alert'><center>$msgErro</center></div>";
+        echo "<div style='animation-name: Rotacao3d; animation-duration: 1s; ' class='alert alert-danger' role='alert' id='idDivMsgPerfil'><center>$msgErro</center></div>";
 
     unset($_SESSION['perfilMsg']);
 }
@@ -211,14 +227,6 @@ if (isset($_SESSION['perfilMsg']))
 	
 <?php unset($_SESSION['msgLitPubli']); } } ?>
 
-	<!--popup da imagem-->
-	<div class="popup-containerChamadoPorBotao" id="popup-containerImgPerfil">
-        <div class="popupChamadoPorBotao">
-            <div class="cabecalhoPopup"><h2 class="h2CarregandoImgPerfil">Aguarde...</h2><img class="gifCarregandoImgPerfil" src="imagens/loading4.gif"></div>
-            <p>Não feche essa janela enquanto atualizamos a sua foto de perfil.</p>
-        </div>
-    </div>
-
 <!--Poupop lit excluída com sucesso-->
 <?php if (isset($_SESSION['msgBDExLit'])) { if($_SESSION['msgBDExLit'] == 2) { ?>
 <div id="popup-container">
@@ -232,7 +240,17 @@ if (isset($_SESSION['perfilMsg']))
 <?php unset($_SESSION['msgBDExLit']); } } ?>
 
 <?php if ($meuUsuario) { ?>
+<!--Form para manipular imagem de perfil-->
+
 <form name="frmFotoPerfil" id="frmFotoPerfilId" method="post" action="BDFotoPerfil.php" enctype="multipart/form-data">
+	<input type="hidden" name="tokenFrmAltFotoPerfil" value="<?php echo $_SESSION['TSFAltFotoPerfil']; ?>">
+	<!--popup da imagem-->
+	<div class="popup-containerChamadoPorBotao" id="popup-containerAtualizandoImgPerfil">
+        <div class="popupChamadoPorBotao">
+            <div class="cabecalhoPopup"><h2 class="h2CarregandoImgPerfil">Aguarde...</h2><img class="gifCarregandoImgPerfil" src="imagens/loading4.gif"></div>
+            <p>Não feche essa janela enquanto atualizamos a sua foto de perfil.</p>
+        </div>
+    </div>
 
 <!--popup excluir imagem-->
 	<div class="popup-containerChamadoPorBotao" id="popup-containerExcluirImgPerfil">
@@ -240,7 +258,7 @@ if (isset($_SESSION['perfilMsg']))
             <h2>Tem certeza de que deseja excluir a sua foto de perfil?</h2>
 			<div class="botoes">
 				<input class="btnCancelarPopUp" type="button" onclick="fecharPopupExcluirImgPerfil()" value="Cancelar">
-				<button type="submit" name="excluFoto" class="btnExcluirPopUp">Excluir</button>
+				<button type="submit" name="excluFoto" onclick="openPopupAtualizandoImgPerfil()" class="btnExcluirPopUp">Excluir</button>
 			</div>
 		</div>
     </div>
@@ -250,9 +268,45 @@ if (isset($_SESSION['perfilMsg']))
 			<div class="botoes" style="flex-direction: column">
 				<label for="arquivoFotoPerfilId" class="btnAlterarPopUp">
 				<span><?php if ($dadosLitPerfil['urlFotoPerfil'] == ""){?>Adicionar<?php }else{ ?>Alterar<?php } ?></span>
-				<input class="btnAlterarPopUp" type="file" id="arquivoFotoPerfilId" name="arquivoFotoPerfil" onchange="enviarFormulario()" accept="image/*"></label><?php if ($dadosLogin['urlFotoPerfil'] != ""){ ?>
+				<input class="btnAlterarPopUp" type="file" id="arquivoFotoPerfilId" name="arquivoFotoPerfil" onchange="enviarFormularioImgPerfil()" accept="image/*"></label><?php if ($dadosLogin['urlFotoPerfil'] != ""){ ?>
 				<button class="btnExcluirPopUp" type="button" onclick="openPopupExcluirImgPerfil()">Excluir</button><?php } ?>
 				<button class="btnCancelarPopUp" type="button" onclick="fecharPopupImgPerfilEdit()">Cancelar</button>
+			</div>
+		</div>
+	</div>
+</form>
+
+<!--Form para manipular banner de perfil-->
+	<form name="frmBanner" id="frmBanner" method="post" action="BDalterarBanner.php" enctype="multipart/form-data">
+		<input type="hidden" name="tokenFrmAltBanner" value="<?php echo $_SESSION['TSFAltBanner']; ?>">
+
+		<!--popup da imagem-->
+	<div class="popup-containerChamadoPorBotao" id="popup-containerAtualizandoBanner">
+        <div class="popupChamadoPorBotao">
+            <div class="cabecalhoPopup"><h2 class="h2CarregandoImgPerfil">Aguarde...</h2><img class="gifCarregandoImgPerfil" src="imagens/loading4.gif"></div>
+            <p>Não feche essa janela enquanto atualizamos o banner do seu perfil.</p>
+        </div>
+    </div>
+
+<!--popup excluir banner-->
+	<div class="popup-containerChamadoPorBotao" id="popup-containerExcluirBanner">
+        <div class="popupChamadoPorBotao">
+            <h2>Tem certeza de que deseja excluir o banner do seu perfil?</h2>
+			<div class="botoes">
+				<input class="btnCancelarPopUp" type="button" onclick="fecharPopupExcluirBanner()" value="Cancelar">
+				<button type="submit" name="excluBanner" onclick="openPopupAtualizandoBanner()" class="btnExcluirPopUp">Excluir</button>
+			</div>
+		</div>
+    </div>
+	<div class="popup-containerChamadoPorBotao" id="popup-containerBannerEdit">
+        <div class="popupChamadoPorBotao bannerEdit">
+			<h2>Banner do Perfil</h2>
+			<div class="botoes" style="flex-direction: column">
+				<label for="arquivoBannerId" class="btnAlterarPopUp">
+				<span><?php if ($dadosLitPerfil['urlBanner'] == ""){?>Adicionar<?php }else{ ?>Alterar<?php } ?></span>
+				<input class="btnAlterarPopUp" type="file" id="arquivoBannerId" name="arquivoBanner" onchange="enviarFormularioBanner()" accept="image/*"></label><?php if ($dadosLogin['urlBanner'] != ""){ ?>
+				<button class="btnExcluirPopUp" type="button" onclick="openPopupExcluirBanner()">Excluir</button><?php } ?>
+				<button class="btnCancelarPopUp" type="button" onclick="fecharPopupImgBanner()">Cancelar</button>
 			</div>
 		</div>
 	</div>
@@ -300,7 +354,7 @@ if ($qtdlits <= 0 && $meuUsuario == false){ ?>
 
 	<?php while($dadosLit=mysqli_fetch_array($queryLit)){ 
 	if ($dadosLit['urlCapa'] == "")
-	{$img = "imagens/batata.png";}else{$img = "imagensCapa/" . $dadosLit['urlCapa'];}
+	{$img = "imagens/batata.png";}else{$img = $dirCapa . $dadosLit['urlCapa'];}
 		
 		$idLitCard = sha1($dadosLit['idLit']);
 		$titulo = $dadosLit['titulo'];
@@ -329,24 +383,6 @@ if ($qtdlits <= 0 && $meuUsuario == false){ ?>
 </body>
 
 </html>
-
-<script>
-        function fecharPopup() {
-            var popupContainer = document.getElementById("popup-container");
-            popupContainer.style.display = "none";
-        }
-		function fecharPopupExcluirImgPerfil ()
-		{
-			var popupContainer = document.getElementById("popup-containerExcluirImgPerfil");
-            popupContainer.style.display = "none";
-		}
-		function fecharPopupImgPerfilEdit ()
-		{
-			var popupContainer = document.getElementById("popup-containerImgPerfilEdit");
-            popupContainer.style.display = "none";
-		}
-    </script>
-	
 	
 <script language="Javascript">
 
@@ -370,50 +406,127 @@ $(window).on('scroll', function() {
 </script>
 
 <script>
-    function enviarFormulario() {
-        // Obtém o formulário pelo ID
-        var formulario = document.getElementById('frmFotoPerfilId');
-		var inputArquivoPerfil = document.getElementById('arquivoFotoPerfilId');
-		var tamanhoMaximoNome = 41;
-		// Verificar o campo de capa
-            if (inputArquivoPerfil.files[0]) {
-                var nomeArquivoPerfil = inputArquivoPerfil.files[0].name;
-                // Verificar o tamanho do nome
-                if (nomeArquivoPerfil.length > tamanhoMaximoNome) {
-                    alert('O nome do arquivo da foto de perfil é muito grande. Por favor, escolha um nome de arquivo mais curto. (Máximo de 41 caracteres)');
-					window.location.reload();
-				}
-				else
-				{
-					// Envia o formulário
-					openPopupImgPerfil();
-					formulario.submit();
-				}
-					
-            }
-		
-    }
-</script>
-
-<script>
-function openPopupImgPerfil() {
-    var containerImgPerfil = document.getElementById('popup-containerImgPerfil');
-    containerImgPerfil.style.display = 'flex';
+function fecharPopup() {
+	var popupContainer = document.getElementById("popup-container");
+	popupContainer.style.display = "none";
 }
 </script>
 
 <script>
+
+function enviarFormularioImgPerfil() {
+	// Obtém o formulário pelo ID
+	var formulario = document.getElementById('frmFotoPerfilId');
+	var inputArquivoPerfil = document.getElementById('arquivoFotoPerfilId');
+	var tamanhoMaximoNome = 41;
+	// Verificar o campo de capa
+		if (inputArquivoPerfil.files[0]) {
+			var nomeArquivoPerfil = inputArquivoPerfil.files[0].name;
+			// Verificar o tamanho do nome
+			if (nomeArquivoPerfil.length > tamanhoMaximoNome) {
+				alert('O nome do arquivo da foto de perfil é muito grande. Por favor, escolha um nome de arquivo mais curto. (Máximo de 41 caracteres)');
+				window.location.reload();
+			}
+			else
+			{
+				// Envia o formulário
+				openPopupAtualizandoImgPerfil();
+				formulario.submit();
+			}
+				
+		}
+}
+
+function openPopupAtualizandoImgPerfil() {
+	fecharPopupExcluirImgPerfil();
+	fecharPopupImgPerfilEdit();
+    var containerImgPerfil = document.getElementById('popup-containerAtualizandoImgPerfil');
+    containerImgPerfil.style.display = 'flex';
+}
+
 function openPopupExcluirImgPerfil() {
     var containerImgPerfil = document.getElementById('popup-containerExcluirImgPerfil');
     containerImgPerfil.style.display = 'flex';
 }
-</script>
-<script>
+
 function openPopupImgPerfilEdit() {
     var containerImgPerfil = document.getElementById('popup-containerImgPerfilEdit');
     containerImgPerfil.style.display = 'flex';
 }
+
+function fecharPopupExcluirImgPerfil ()
+{
+	var popupContainer = document.getElementById("popup-containerExcluirImgPerfil");
+	popupContainer.style.display = "none";
+}
+function fecharPopupImgPerfilEdit ()
+{
+	var popupContainer = document.getElementById("popup-containerImgPerfilEdit");
+	popupContainer.style.display = "none";
+}
 </script>
+
+<script>
+
+function enviarFormularioBanner() {
+	// Obtém o formulário pelo ID
+	var formulario = document.getElementById('frmBanner');
+	var inputArquivo = document.getElementById('arquivoBannerId');
+	var tamanhoMaximoNome = 41;
+	// Verificar o campo de capa
+		if (inputArquivo.files[0]) {
+			var nomeArquivo = inputArquivo.files[0].name;
+			// Verificar o tamanho do nome
+			if (nomeArquivo.length > tamanhoMaximoNome) {
+				alert('O nome do arquivo do banner é muito grande. Por favor, escolha um nome de arquivo mais curto. (Máximo de 41 caracteres)');
+				window.location.reload();
+			}
+			else
+			{
+				// Envia o formulário
+				openPopupAtualizandoBanner();
+				formulario.submit();
+			}
+				
+		}
+} //popup-containerBanner
+
+function openPopupAtualizandoBanner()
+{
+	fecharPopupImgBanner();
+	fecharPopupExcluirBanner();
+	var containerImgPerfil = document.getElementById('popup-containerAtualizandoBanner');
+    containerImgPerfil.style.display = 'flex';
+}
+
+function openPopupBanner() {
+    var containerImgPerfil = document.getElementById('popup-containerBanner');
+    containerImgPerfil.style.display = 'flex';
+}
+
+function openPopupExcluirBanner() { //excluirConfirmação
+    var containerImgPerfil = document.getElementById('popup-containerExcluirBanner');
+    containerImgPerfil.style.display = 'flex';
+	fecharPopupImgBanner();
+}
+
+function openPopupBannerEdit() { //principal
+    var containerImgPerfil = document.getElementById('popup-containerBannerEdit');
+    containerImgPerfil.style.display = 'flex';
+}
+
+function fecharPopupExcluirBanner ()
+{
+	var popupContainer = document.getElementById("popup-containerExcluirBanner");
+	popupContainer.style.display = "none";
+}
+function fecharPopupImgBanner ()
+{
+	var popupContainer = document.getElementById("popup-containerBannerEdit");
+	popupContainer.style.display = "none";
+}
+</script>
+
 <?php if ($meuUsuario == false) { ?>
 <script>
 //Função para ajax do botão de Insecrever-se

@@ -1,0 +1,477 @@
+:root {
+    --tempoVirada: transform 0.5s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+	background: url(../imagens/FundoLogin.svg);
+	background-size: cover;
+}
+
+main {
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    margin: 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    gap: 10vw;
+    transform: scale(0.5);
+    transform-origin: 50% 25%;
+}
+
+.btnPrevNext {
+	display: none;
+    color: var(--cor3Claro);
+    border: none;
+    font-size: 1.6vw;
+    border-radius: 1.5vw;
+    background: var(--amareloGradiente);
+    box-shadow: var(--sombra);
+    width: 100%;
+    height: 5vw;
+    transition: var(--tempoVirada);
+}
+
+.btnPrevNext:hover {
+    background: var(--amareloEscuroGradiente);
+    cursor: pointer;
+}
+
+.livro {
+    display: flex;
+    position: relative;
+    width: 40vw;
+    height: 60vw;
+    left: -2vw;
+    transition: var(--tempoVirada);
+}
+
+.capas {
+    position: absolute;
+    perspective: 150vw;
+}
+
+.capasFront,
+.capasBack {
+    display: flex;
+    position: absolute;
+    padding: 2vw 2vw 2vw 0;
+    border-radius: 0 4vw 4vw 0;
+    background: var(--cor1Escuro);
+    box-sizing: content-box;
+    transition: var(--tempoVirada);
+    transform-origin: left;
+}
+
+.capasFront {
+    z-index: 1;
+    backface-visibility: hidden;
+}
+
+.capasBack {
+    z-index: 0;
+}
+
+.capaFront,
+.capaBack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dentroLivro {
+    padding: 2vw 4vw 2vw 0;
+    box-sizing: content-box;
+}
+
+.paginasFront,
+.paginasBack {
+    display: flex;
+    position: absolute;
+    width: 40vw;
+    height: 60vw;
+}
+
+.pagsCapaFront,
+.pagsCapaBack {
+    display: flex;
+    width: 40vw;
+    height: 60vw;
+    background: var(--cor3Escuro);
+    padding: 0 2vw 0 0;
+    border-radius: 0 4vw 4vw 0;
+    box-sizing: content-box;
+}
+
+.paginas {
+    position: absolute;
+    perspective: 150vw;
+}
+
+.pagCapaFront,
+.pagCapaBack {
+    display: flex;
+    padding: 2vw;
+    width: 40vw;
+    height: 60vw;
+    background: var(--cor3);
+    border-radius: 0 4vw 4vw 0;
+    border: 2px solid var(--cor3Escuro);
+}
+
+.conteudosFront,
+.conteudosBack {
+    display: flex;
+    padding: 2vw;
+    width: 40vw;
+    height: 60vw;
+    background: var(--cor3);
+    position: absolute;
+    border-radius: 0 4vw 4vw 0;
+    border: 2px solid var(--cor3Escuro);
+    transition: var(--tempoVirada);
+    transform-origin: left;
+}
+
+.conteudosFront {
+    z-index: 1;
+    backface-visibility: hidden;
+}
+
+.conteudosBack {
+    z-index: 0;
+}
+
+.conteudoFront,
+.conteudoBack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.conteudoBack {
+    transform: rotateY(-180deg);
+}
+
+.nota {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1vw;
+    padding-left: calc(1vw + 5vw);
+    width: 20vw;
+    background: var(--vermelho);
+    position: absolute;
+    top: 35vw;
+    right: 4vw;
+    border-radius: 1vw;
+    transition: transform 0.5s ease;
+}
+
+.txtNota {
+    color: var(--cor3Claro);
+    text-align: left;
+    width: 100%;
+    font-family: Libre Baskerville;
+    font-size: 1.2vw;
+}
+
+/* Efeito da página virando */
+
+.virada .conteudosFront,
+.virada .conteudosBack,
+.virada .capasFront,
+.virada .capasBack {
+    transform: rotateY(-180deg);
+}
+
+/* Ordem da capa */
+
+#c1 {
+    z-index: 4;
+}
+
+/* Ordem das páginas */
+
+#p1,
+#f1,
+#b3 {
+    z-index: 3;
+}
+
+#p2,
+#f2,
+#b2 {
+    z-index: 2;
+}
+
+#p3,
+#f3,
+#b1 {
+    z-index: 1;
+}
+
+/* Ordem da contracapa */
+
+#c2 {
+    z-index: 0;
+}
+
+/* Responsividade */
+
+@media (max-width: 1000px) {
+    :root {
+        --tempoVirada: transform 1s ease;
+    }
+
+    .content {
+        transform: scale(2);
+    }
+
+    .capasFront,
+    .capasBack {
+        padding: 0 2vw 2vw 2vw;
+        border-radius: 0 0 4vw 4vw;
+        transform-origin: top;
+    }
+
+    .dentroLivro {
+        padding: 0 2vw 4vw 2vw;
+    }
+
+    .pagsCapaFront,
+    .pagsCapaBack {
+        display: flex;
+        padding: 0 0 2vw 0;
+        border-radius: 0 0 4vw 4vw;
+        box-sizing: content-box;
+    }
+
+    .pagCapaFront,
+    .pagCapaBack {
+        display: flex;
+        border-radius: 0 0 4vw 4vw;
+    }
+
+    .conteudosFront,
+    .conteudosBack {
+        display: flex;
+        position: absolute;
+        border-radius: 0 0 4vw 4vw;
+        transition: var(--tempoVirada);
+        transform-origin: top;
+    }
+
+    .conteudoBack {
+        transform: rotateY(360deg);
+    }
+
+    .nota {
+        right: 2vw;
+    }
+
+    .virada .conteudosFront,
+    .virada .conteudosBack,
+    .virada .capasFront,
+    .virada .capasBack {
+        transform: rotateX(360deg);
+    }
+
+    .livro {
+        transform: translateX(0%) !important;
+    }
+
+    .btnPrevNext {
+        transform: translateX(0vw) !important;
+    }
+}
+
+.botoes {
+    display: flex;
+    width: calc(100% + 2vw + 2vw);
+    position: relative;
+    left: -2vw;
+    gap: 2vw;
+}
+
+.txtLivro {
+    color: var(--cor4Escuro);
+    text-align: center;
+    font-family: Libre Baskerville;
+    font-size: 2.4vw;
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    height: 60vw;
+    padding: 2vw;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
+.titulo {
+    color: var(--cor4Escuro);
+	text-align: center;
+	font-family: Angkor;
+	font-size: 3.2vw;
+}
+
+.divLogin {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    width: 100%;
+}
+
+.lblCampo {
+    width: 100%;
+	color: var(--cor4Escuro);
+	font-family: Libre Baskerville;
+	font-size: 1.6vw;
+}
+
+.txtCampo {
+	display: flex;
+	gap: 1vw;
+	width: 100%;
+	height: 3vw;
+	border: none;
+	font-family: Libre Baskerville;
+    font-size: 1.6vw;
+	background: none;
+	border-bottom: 2px solid var(--cor4Escuro);
+}
+
+.txtCampo:focus {
+	outline: none;
+}
+
+.txtInvisivel {
+	width: 100%;
+	height: 100%;
+	background: none;
+	border: none;
+}
+
+.txtInvisivel:focus {
+	outline: none;
+}
+
+.gapErro {
+	width: 100%;
+	height: 1.5vw;
+}
+
+.lblErro {
+    color: var(--vermelho);
+    font-size: 1.2vw;
+    animation-name: vibrar;
+    animation-duration: 0.5s;
+}
+
+@keyframes vibrar {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20%, 60% {
+        transform: translateX(-1vw);
+    }
+    40%, 80% {
+        transform: translateX(1vw);
+    }
+}
+
+.btnMostrar {
+	background: none;
+	border: none;
+	width: 2vw;
+	height: 2vw;
+    cursor: pointer;
+}
+
+.btnEsqueciSenha {
+    width: 100%;
+	font-family: Libre Baskerville;
+	font-size: 1.6vw;
+    text-align: end;
+    background-color: transparent;
+    border: none;
+    color: var(--cor2);
+}
+
+.btnEsqueciSenha:hover {
+    cursor: pointer;
+}
+
+.container {
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 2vw;
+}
+
+.containerCampo {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.btnPrimario {
+    display: flex;
+    width: 20vw;
+    height: 5vw;
+    font-family: Libre Baskerville;
+    font-size: 1.6vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5vw;
+    color: var(--cor3);
+    background: var(--cor4Escuro);
+    border: none;
+}
+
+.btnPrimario:hover {
+    background: var(--cor4);
+    cursor: pointer;
+}
+
+.btnSecundario {
+	display: flex;
+	width: 20vw;
+	height: 5vw;
+	font-family: Libre Baskerville;
+	font-size: 1.6vw;
+	font-weight: 400;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	color: var(--cor4Escuro);
+	background: none;
+}
+
+.btnSecundario:hover {
+    color: var(--cor4);
+    cursor: pointer;
+}

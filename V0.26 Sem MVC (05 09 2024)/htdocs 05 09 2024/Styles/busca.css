@@ -1,0 +1,72 @@
+<style>
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    width: 80%;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.lblNaoHaSearch {
+    font-size: 20px;
+    margin-top: 50px;
+}
+
+.litsHoriz {
+    margin-bottom: 30px;
+}
+
+.imgSemComents {
+    width: 20%;
+}
+
+.lblNomeCategoriaFiltro {
+    width: 62.5px;
+    height: 35px;
+    border-radius: 5px;
+    background: var(--cor4Escuro);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--branco);
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Corrigido de whitespace para white-space */
+    font-family: Armata;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.aInscricoes {
+    color: var(--cor4Escuro);
+    text-decoration: none;
+}
+
+.btnRev {
+    width: 40px;
+    height: 40px;
+    background: var(--cor4Escuro); 
+    border-radius: 10px; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 13px; 
+    display: inline-flex;
+    color: var(--branco);
+    border: none;
+    cursor: pointer; 
+    outline: none;  
+}
+
+.imgUserBuscado {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 250px;
+    border: 1px solid var(--cinzaClaro);
+}
+</style>

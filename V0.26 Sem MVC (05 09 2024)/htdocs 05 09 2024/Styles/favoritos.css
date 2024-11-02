@@ -1,0 +1,19 @@
+<style>
+body
+{
+	padding-bottom: 200px;
+    height: 100%;
+    margin: 0;
+}
+
+.lblFav
+{
+    color: black;
+    font-size: 48px;
+    font-family: Armata;
+    font-weight: 400;
+    text-transform: uppercase;
+    word-wrap: break-word
+}
+
+</style>

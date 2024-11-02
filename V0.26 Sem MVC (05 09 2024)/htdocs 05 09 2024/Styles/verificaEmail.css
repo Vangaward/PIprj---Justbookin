@@ -1,0 +1,151 @@
+<style>
+    body
+    {
+
+       background-position: center;
+       background-size: cover;
+       background-color: var(--limaClaro);
+       background-repeat: no-repeat;
+       
+    }
+    .divErro
+    {
+        background-color: var(--vermelho);
+        color: var(--branco);
+    }
+    .titulo
+    {
+	    margin-top: 150px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        cursor: default;
+    }
+	.subtitulo /*usado em verificaEmailEsqueciSenha.php*/
+	{
+        font-family: Arial, sans-serif;
+        text-align: center;
+        cursor: default;
+	}
+	.linkErro
+	{
+		font-size: 20px;
+	}
+    .divLogin
+    {
+        background-color: var(--branco);
+        text-align: center;
+        width: 350px;
+        height: 220px;
+        border: solid 1px var(--cinzaMaisEscuro);
+        margin-left: auto;
+        margin-top: 40px;
+        margin-right: auto;
+    }
+    
+    .lblSenha
+    {
+	    display: block;
+        font-family: Arial, sans-serif;
+        margin-top: -110px;
+        margin-left: auto;
+        font-size: 20px;
+    }
+    .txtSenha
+    {
+        font-family: Arial, sans-serif;
+        width: 285px;
+        height: 45px;
+        font-size: 25px;
+        border: none;
+        background-color: var(--cinzaMaisClaro);
+    }
+    
+    .lblconfirmarSenha
+    {
+	    display: block;
+        font-family: Arial, sans-serif;
+        margin-top: -100px;
+        margin-left: 0px;
+        font-size: 20px;
+    }
+    .txtconfirmarSenha
+    {
+        font-family: Arial, sans-serif;
+        width: 285px;
+        height: 45px;
+        font-size: 25px;
+        border: none;
+        background-color: var(--cinzaMaisClaro);
+    }
+      .btnEnviar
+    {
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        font-weight: bold;
+        background-color: var(--cinzaMaisClaro);
+        border: solid 1px var(--cinzaMaisEscuro);
+        width: 100px;
+        height: 30px;
+        margin-top:160px;
+        margin-right: -250px;
+	    cursor: pointer;
+    }
+   
+    .btnEnviar, .btnFazerLogin
+ {
+     Margin-left: -250px;
+ }
+   .btnEnviar:hover, .btnCancelar:hover, .btnInicio:hover
+    {
+        background-color: var(--cinzaMaisEscuro);
+    }
+    .btnEnviar:active,  .btnCancelar:active, .btnInicio:active
+    {
+        background-color: var(--cinza);
+        color: var(--branco);
+    }
+    
+    .btnInicio {
+    font-family: Arial, sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+    background-color: var(--cinzaMaisClaro);
+    border: solid 1px var(--cinzaMaisEscuro);
+    width: 90px;
+    height: 50px;
+    cursor: pointer;
+}
+  
+.footerFixado
+{
+	position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+  
+ /*Responsividade*/
+ 
+    @media screen and (min-height:900px)
+    {
+        .titulo
+        {
+            margin-top: 230px;
+        }
+    }
+        @media screen and (min-height:1200px)
+    {
+        .titulo
+        {
+            margin-top: 330px;
+        }
+    }
+    
+    @media screen and (max-height:600px)
+    {
+        .titulo
+        {
+            margin-top: 40px;
+        }
+    }
+
+</style>

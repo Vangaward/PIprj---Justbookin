@@ -1,0 +1,152 @@
+<style>
+
+body
+{
+    background: var(--branco);
+}
+
+.conteudo {
+	display: flex;
+	padding: 100px 100px 50px 100px;
+	flex-direction: column;
+	gap: 50px;
+}
+
+@keyframes Rotacao3d
+{
+	from {transform: rotateX(180deg);}
+	to {transform: rotateX(0deg);}
+}
+.titulo
+ {
+    color: var(--cor4Escuro);
+    font-size: 48px;
+    font-weight: 400;
+    text-transform: uppercase;
+    word-wrap: break-word;
+}
+.tituloPagina
+{
+    color: var(--cor4Escuro);
+    font-size: 48px;
+    font-family: Armata;
+    font-weight: 400;
+    text-transform: uppercase;
+    word-wrap: break-word
+}
+
+.etapas {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.texto
+{
+    color: var(--cor4Escuro);
+    font-size: 32px;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+.imgCard img
+{
+	width: 100%;
+	height: 100%;
+	object-fit: fill;
+}
+#arquivoPdfId
+{
+ 
+ padding: 0 120px;
+}
+#btnImg
+{
+ 
+ padding: 0 120px;
+}
+.btnPro
+{ 
+    width: 150px;
+    background: var(--cor4Escuro); 
+    border-radius: 25px; 
+    overflow: hidden; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px; 
+    display: inline-flex;
+    color: white;
+    top: 50px;
+    height: 50px;
+    border: none;
+    cursor: pointer; 
+    outline: none; 
+}
+.container
+{
+    padding: 0 120px;
+}
+
+.cardLivro
+{
+  position: relative;
+  flex: 0 0 auto;
+  width: 400px;
+  height: 600px;
+  margin-right: 10px;
+  padding: 10px;
+  border: 4px solid var(--cor4Escuro);
+  font-size: 16px;
+}
+.pdfViewerBorda
+{
+    position: relative;
+    flex: 0 0 auto;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    background: var(--cinzaMaisClaro);
+    font-size: 24px;
+    text-align: right;
+	border-radius: 5px;
+}
+input[type="file"] {
+    display: none;
+}
+
+.selecaoArquivo {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.btnArquivo {
+	width: 200px; 
+    height: 50px; 
+	display: inline-flex;
+    padding-left: 20px; 
+    padding-right: 20px;
+    cursor: pointer;
+    background: var(--branco);
+    border-radius: 10px;
+    border: 2px var(--cor4Escuro) solid;
+	justify-content: center;
+}
+
+.btnArquivo:hover {
+	background: var(--cor4Claro);
+}
+
+.lblArquivo {
+    color: var(--cor4Escuro);
+    font-size: 15px;
+    font-family: Arimo;
+    font-weight: 400;
+    word-wrap: break-word;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden; 
+	margin: auto 0;
+}
+
+</style>

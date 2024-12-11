@@ -1,0 +1,82 @@
+<style>
+/* Resetando margens e paddings para garantir um layout consistente */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.botao {
+	font-family: Arimo;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.listaDeCards {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
+a {
+    display: inline-block;
+    margin: 10px;
+    text-decoration: none;
+    color: var(--cor4);
+    text-align: center;
+	display: flex;
+	flex-direction: column-reverse;
+	gap: 5px;
+	align-items: center;
+}
+
+a img {
+    display: block;
+    max-width: 100px;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+/* Estilizando os itens listados (editoras) */
+a {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+a:hover {
+    transform: scale(1.05);
+}
+
+a img {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}
+
+.container-editoras {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+</style>

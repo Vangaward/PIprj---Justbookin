@@ -1,0 +1,745 @@
+<style>
+.body {
+    src: url('../Fontes/Armata.zip') format('truetype');
+	text-overflow: ellipsis;
+}
+
+#popup-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+            z-index: 2; /* Coloca o container acima dos outros elementos */
+        }
+
+        #popup {
+            background-color: #fff;
+            padding: 20px;
+			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+			border-radius: 25px;
+			width: 300px;
+        }
+				/*ChamadoPorBotao popup*/
+	.popup-containerChamadoPorBotao {
+    display: none; /* Inicialmente oculto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+    justify-content: center;
+    align-items: center;
+    z-index: 3; /* Coloca o container acima dos outros elementos */
+}
+
+	.popupChamadoPorBotao {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+		.h2CarregandoImgPerfil
+		{
+			margin-bottom: 20px;
+			margin-right: 25px;
+		}
+		.gifCarregandoImgPerfil
+		{
+			width: 15%;
+			margin-top: -10px;
+			margin: 0;
+		}
+		.cabecalhoPopup
+		{
+			display: flex;
+            align-items: center;
+		}
+
+		.btnOkPopUp
+		{
+			cursor: pointer;
+			background-color: #16463F;
+			border: none;
+			color: #ffffff;
+			width: 70px;
+			height: 40px;
+			border-radius: 25px;
+		}
+		.btnOkPopUp:hover
+		{
+			background-color: #6EBBB0;
+		}
+		.btnSalvarPoupop
+		{
+			cursor: pointer;
+			background-color: #ededed;
+			border: none;
+			color: #000000;
+			width: 70px;
+			height: 40px;
+			border-radius: 25px;
+			margin-right: 10px;
+		}
+		.btnSalvarPoupop:hover
+		{
+			background-color: #b3b3b3;
+		}
+
+.conteudo {
+    display: flex;
+    padding: 100px 100px 50px 100px;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.tituloEditarLivro {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    whitespace: nowrap;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.linkVoltarLivro {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+}
+
+.form {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.passoseditarLivro {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.cardLivro {
+    position: relative;
+    flex: 0 0 auto;
+    width: 400px;
+    height: 600px;
+    margin-right: 10px;
+    padding: 10px;
+    border: 4px solid #000000;
+    font-size: 16px;
+}
+
+.pdfViewerBorda {
+    position: relative;
+    flex: 0 0 auto;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    background-color: #D9D9D9;
+    font-size: 24px;
+    text-align: right;
+}
+
+.imgCard img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+#btnImg {
+    padding: 0 120px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.arquivo {
+    width: 100px;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: black;
+    font-size: 15px;
+    font-family: Arimo;
+    font-weight: 400;
+    word-wrap: break-word;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px #D9D9D9 solid;
+    justify-content: center;
+    align-items: center;
+}
+
+.txtTituloLivro {
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    border: none;
+    width: 540px;
+    resize: none;
+}
+
+.txtDescricao {
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    border: none;
+    width: 540px;
+}
+
+.divCat {
+    display: flex;
+    width: 540px;
+    height: 140px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.checkboxCat {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    gap: 10px;
+    align-self: stretch;
+    flex-wrap: wrap;
+}
+
+.checkboxCat input {
+    display: none;
+}
+
+.checkboxCat label {
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-family: Armata;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    border-radius: 6px;
+}
+
+.checkboxCat label:hover {
+    color: #1F4152;
+    background-color: #D0DDD9;
+    border: 2px solid #1F4152;
+}
+
+.checkboxCat input + label {
+    color: #1F4152;
+    background-color: #fff;
+    border: 2px solid #1F4152;
+}
+
+.checkboxCat input:checked + label {
+    color: #FFF;
+    background-color: #1F4152;
+    border: none;
+}
+
+.respostaRadio {
+    display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    whitespace: nowrap;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.radioBtn input {
+    display: none;
+}
+
+.radioBtn input + label:before {
+    content: '';
+    height: 30px;
+    width: 30px;
+    border-radius: 100px;
+    border: 3px solid #7C7C7C;
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.radioBtn input:checked + label:before {
+    background: radial-gradient(circle, #6EBBB0 45%, transparent 50%);
+}
+
+.seletorCapitulos {
+    display: none;
+}
+
+.hEditCap {
+    display: flex;
+    padding: 20px 50px;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    background: #1F4152;
+    border-radius: 50px 50px 0px 0px;
+}
+
+.hEditCap label {
+    overflow: hidden;
+    color: #FFF;
+    text-overflow: ellipsis;
+    font-family: Arimo;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.hEditCap input {
+    color: #FFF;
+    font-family: Arimo;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: transparent;
+    border: none;
+    width: 50px;
+}
+
+.hEditCap button {
+    overflow: hidden;
+    color: #000;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-family: Arimo;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+    height: 25px;
+    padding: 0px 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid #D9D9D9;
+    background: #FFF;
+}
+
+.editorCapitulos {
+    height: 500;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 0px 0px 50px 50px;
+    background: #000;
+    overflow-y: scroll;
+}
+
+.capitulos {
+    background: #000;
+    padding: 10px 50px;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+
+.btnPublicar {
+    color: #E7E1D5;
+    font-family: Armata;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    display: flex;
+    height: 50px;
+    padding: 0px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 25px;
+    background: #1F4152;
+    border: none;
+}
+
+/* Edição de capítulos */
+.lblPag {
+    margin-top: 10px;
+    color: white;
+}
+
+.lblIn {
+    color: white;
+}
+
+.txtNomeCapitulo {
+    color: white;
+    border-radius: 4px;
+    background-color: transparent;
+    border: 1px solid #7C7C7C;
+    margin-left: 10px;
+}
+
+.txtPaginaCapitulo {
+    color: #fff;
+    border-radius: 4px;
+    background-color: transparent;
+    border: 1px solid #7C7C7C;
+    margin-left: 35px;
+}
+
+.linhaCap {
+    height: 3px;
+    border: none;
+    width: 100%;
+    color: white;
+    margin: 10px solid #ffffff;
+    background-color: white;
+}
+
+.btnsPub {
+	display: flex;
+	gap: 20px;
+}
+
+/* Fim da edição de capítulos */
+</style>
+<style>
+.body {
+	src: url('../Fontes/Armata.zip') format('truetype');
+	text-overflow: ellipsis;
+}
+
+.conteudo {
+	display: flex;
+	padding: 100px 100px 50px 100px;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.tituloPublicarObra {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	whitespace: nowrap;
+	font-size: 48px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-transform: uppercase;
+}
+
+.linkVoltarPublicarObraP1 {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--cor4Escuro);
+    text-decoration: none;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 25px;
+}
+
+.passo {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.passoseditarLivro {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 32px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.txtbox {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--cinzaMaisClaro);
+	border-radius: 10px;
+	width: 540px;
+}
+
+.txtTituloLivro {
+	border: none;
+	background: none;
+	width: 100%;
+	resize: none;
+}
+
+.txtDescricao {
+	border: none;
+	background: none;
+	width: 100%;
+}
+
+.txtTituloLivro, .txtDescricao:focus {
+	outline: none;
+}
+
+.limiteCarac {
+	color: var(--cinzaEscuro);
+	font-size: 10px;
+	text-align: end;
+	padding: 5px;
+}
+
+.divCat {
+	display: flex;
+	width: 540px;
+	height: 140px;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	overflow-y: auto;
+}
+
+.checkboxCat {
+	display: flex;
+	gap: 10px;
+	align-self: stretch;
+	flex-wrap: wrap;
+}
+.checkboxCat input{
+	display: none;
+}
+
+.checkboxCat label{
+	overflow: hidden;
+	text-align: center;
+	text-overflow: ellipsis;
+	font-family: Armata;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100px;
+	height: 40px;
+	border-radius: 6px;
+}
+
+.checkboxCat label:hover {
+	color: var(--cor4Escuro);
+	background-color: var(--cor4Claro);
+	border: 2px solid var(--cor4Escuro);
+}
+
+.checkboxCat input + label {
+	color: var(--cor4Escuro);
+	background-color: var(--branco);
+	border: 2px solid var(--cor4Escuro);
+}
+
+.checkboxCat input:checked + label {
+	color: var(--branco);
+	background-color: var(--cor4Escuro);
+	border: none;
+}
+
+.respostaRadio {
+	display: flex;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	whitespace: nowrap;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.radioBtn input {
+	display: none;
+}
+
+.radioBtn input + label:before{
+	content: '';
+	height: 30px;
+	width: 30px;
+	border-radius: 100px;
+	border: 3px solid var(--cinza);
+	display: inline-block;
+	margin-right: 1rem;
+}
+
+.radioBtn input:checked + label:before{
+	background: radial-gradient(circle, var(--cor1) 45%, transparent 50%);
+}
+
+.seletorCapitulos {
+	display: none;
+}
+
+.listaCap {
+	display: flex;
+	flex-direction: column;
+	border-radius: 20px;
+	overflow: hidden;
+}
+
+.hEditCap {
+	display: flex;
+	padding: 20px 50px;
+	align-items: center;
+	gap: 10px;
+	align-self: stretch;
+	background: var(--cor4);
+}
+
+.hEditCap label {
+	overflow: hidden;
+	color: var(--cor4Escuro);
+	text-overflow: ellipsis;
+	font-family: Arimo;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.hEditCap input {
+	color: var(--cor4Escuro);
+	font-family: Arimo;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	background: transparent;
+	border: none;
+	width: 50px;
+}
+
+.hEditCap button {
+	overflow: hidden;
+	color: var(--cor4Escuro);
+	text-align: center;
+	text-overflow: ellipsis;
+	font-family: Arimo;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	display: flex;
+	height: 25px;
+	padding: 0px 10px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+	border: 2px solid var(--cor4Escuro);
+	background: var(--cor4);
+}
+
+.hEditCap button:hover {
+	color: var(--cor4);
+	border: 2px solid var(--cor4);
+	background: var(--cor4Escuro);
+}
+
+.editorCapitulos {
+	height: 500;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	align-self: stretch;
+	background: var(--cor4Escuro);
+	overflow-y: scroll;
+}
+
+.capitulos {
+	background: var(--cor4Escuro);
+	padding: 10px 50px;
+	align-items: center;
+	flex-shrink: 0;
+	align-self: stretch;
+}
+
+.btnPublicar {
+	color: var(--cor3);
+	font-family: Armata;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-transform: uppercase;
+	display: flex;
+	height: 50px;
+	padding: 0px 20px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	border-radius: 25px;
+	background: var(--cor4Escuro);
+	border: none;
+}
+
+/*Edição de capítulos:*/
+.lblPag
+{
+	margin-top: 10px;
+	color: var(--branco);
+}
+.lblIn
+{
+	color: var(--branco);
+}
+.txtCapitulo {
+	color: var(--branco);
+	border-radius: 4px;
+    background-color: transparent;
+	border: 1px solid var(--cor4Claro);
+	margin-left: 10px;
+}
+
+.linhaCap
+{
+	height: 3px; 
+	border: none;
+	width: 100%;
+	color: white;
+	margin: 10px solid var(--branco);
+	background-color: var(--branco);
+}
+/*Fim da edição de capítulos:*/
+
+</style>

@@ -1,0 +1,119 @@
+<style>
+body {
+    padding-bottom: 200px;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Fundo neutro usado na página Inicio */
+    margin: 0;
+	text-overflow: ellipsis;
+}
+
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -200px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.inicio {
+	display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.litsHoriz {
+	display: flex;
+	gap: 20px;
+	width: 100%;
+	overflow: auto;
+	padding: 10px;
+}
+
+.btnAlterarPopUp {
+    text-align: left;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #ffffff; /* Fundo branco */
+    border: 1px solid #ccc; /* Borda padrão leve */
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+.btnAlterarPopUp h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333; /* Texto padrão */
+}
+
+.btnAlterarPopUp label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    color: #333;
+}
+
+.btnAlterarPopUp input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fafafa; /* Fundo claro */
+}
+
+.btnAlterarPopUp button[type="submit"] {
+    padding: 12px;
+    width: 100%;
+    background-color: #007bff; /* Azul usado em botões padrão */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btnAlterarPopUp button[type="submit"]:hover {
+    background-color: #0056b3; /* Azul escuro no hover */
+}
+
+.lblErro {
+    font-size: 14px;
+    color: #e74c3c; /* Vermelho para erros */
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 900px) {
+    .container {
+        width: 90%;
+    }
+
+    .btnAlterarPopUp {
+        padding: 20px;
+    }
+
+    .btnAlterarPopUp h1 {
+        font-size: 20px;
+    }
+
+    .btnAlterarPopUp button[type="submit"] {
+        font-size: 16px;
+    }
+}
+
+</style>
